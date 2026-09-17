@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Basketball Game Portal</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+
+            background-image:
+                linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url("https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+
+        /* =========================
+           MAIN GRID
+        ========================== */
+
+        .container {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+
+            grid-template-rows:
+                120px
+                200px
+                350px
+                100px;
+
+            min-height: 100vh;
+
+            gap: 5px;
+
+            background-color: rgba(255,255,255,0.15);
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        header {
+
+            grid-column: 1 / 5;
+
+            background-image:
+                linear-gradient(rgba(232,93,4,0.85), rgba(232,93,4,0.85)),
+                url("https://images.unsplash.com/photo-1518065896235-a4c93e088e7a?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            color: white;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+
+        header h1 {
+
+            margin-bottom: 15px;
+
+            font-size: 32px;
+
+            text-shadow: 2px 2px 5px black;
+        }
+
+
+        nav {
+
+            display: flex;
+
+            gap: 70px;
+        }
+
+
+        nav a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover {
+
+            color: #ffe600;
+
+            transform: scale(1.1);
+        }
+
+
+        /* =========================
+           PHOTO CARDS
+        ========================== */
+
+        .small-box {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background-color: #ffb703;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            text-align: center;
+
+            color: white;
+
+            padding: 20px;
+
+            min-height: 200px;
+
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+
+            transition: 0.3s;
+        }
+
+
+        .small-box:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+        }
+
+
+        .small-box img {
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            top: 0;
+
+            left: 0;
+
+            transition: 0.5s;
+        }
+
+
+        .small-box:hover img {
+
+            transform: scale(1.1);
+        }
+
+
+        .small-box-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 100%;
+
+            padding: 15px;
+
+            background: linear-gradient(
+                transparent,
+                rgba(0,0,0,0.85)
+            );
+
+            padding-top: 50px;
+        }
+
+
+        .small-box h2 {
+
+            margin-bottom: 8px;
+
+            text-shadow: 2px 2px 4px black;
+        }
+
+
+        .small-box p {
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================== */
+
+        .main-content {
+
+            grid-column: 1 / 4;
+
+            position: relative;
+
+            background-image:
+                linear-gradient(
+                    rgba(144,190,109,0.85),
+                    rgba(144,190,109,0.85)
+                ),
+                url("https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=1200&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            padding: 30px;
+
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+
+
+        .main-content h2 {
+
+            margin-bottom: 15px;
+
+            font-size: 28px;
+        }
+
+
+        .main-content p {
+
+            margin-bottom: 15px;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           SCOREBOARD
+        ========================== */
+
+        .game-area {
+
+            margin-top: 25px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 35px;
+
+            text-align: center;
+        }
+
+
+        .team {
+
+            background-color: rgba(255,255,255,0.95);
+
+            padding: 20px 35px;
+
+            border-radius: 15px;
+
+            min-width: 150px;
+
+            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+
+            transition: 0.3s;
+        }
+
+
+        .team:hover {
+
+            transform: scale(1.05);
+        }
+
+
+        .team h3 {
+
+            margin-bottom: 10px;
+
+            font-size: 18px;
+        }
+
+
+        .score {
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            color: #e85d04;
+        }
+
+
+        .vs {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: #111;
+        }
+
+
+        /* =========================
+           PLAY BUTTON
+        ========================== */
+
+        .play-button {
+
+            margin-top: 25px;
+
+            padding: 13px 30px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background-color: #e85d04;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+            transition: 0.3s;
+        }
+
+
+        .play-button:hover {
+
+            background-color: #d00000;
+
+            transform: scale(1.08);
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================== */
+
+        .sidebar {
+
+            grid-column: 4;
+
+            grid-row: 2 / 4;
+
+            background-image:
+                linear-gradient(
+                    rgba(33,158,188,0.85),
+                    rgba(33,158,188,0.85)
+                ),
+                url("https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=800&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            padding: 25px;
+
+            overflow: hidden;
+        }
+
+
+        .sidebar h2 {
+
+            margin-bottom: 20px;
+
+            color: white;
+
+            text-shadow: 2px 2px 4px black;
+        }
+
+
+        /* =========================
+           SIDE QUICK LINKS
+        ========================== */
+
+        .sidebar ul {
+
+            list-style: none;
+        }
+
+
+        .sidebar li {
+
+            background-color: rgba(255,255,255,0.9);
+
+            margin-bottom: 12px;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            transform: translateX(0);
+
+            transition: 0.35s;
+
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+
+        .sidebar li:hover {
+
+            transform: translateX(15px);
+
+            background-color: #ffb703;
+
+            box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+
+        .sidebar a {
+
+            text-decoration: none;
+
+            color: #111;
+
+            font-weight: bold;
+
+            display: block;
+        }
+
+
+        /* =========================
+           SIDE PANEL
+        ========================== */
+
+        .side-panel {
+
+            position: fixed;
+
+            top: 0;
+
+            right: -350px;
+
+            width: 350px;
+
+            height: 100vh;
+
+            background-image:
+                linear-gradient(
+                    rgba(2,48,71,0.95),
+                    rgba(2,48,71,0.95)
+                ),
+                url("https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=80");
+
+            background-size: cover;
+
+            color: white;
+
+            padding: 30px;
+
+            z-index: 1000;
+
+            transition: 0.4s;
+
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        }
+
+
+        .side-panel.active {
+
+            right: 0;
+        }
+
+
+        .side-panel h2 {
+
+            margin-bottom: 20px;
+
+            color: #ffb703;
+        }
+
+
+        .side-panel p {
+
+            margin-bottom: 20px;
+
+            line-height: 1.6;
+        }
+
+
+        .close-button {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 20px;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            color: white;
+        }
+
+
+        .close-button:hover {
+
+            color: #ffb703;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+
+            grid-column: 1 / 5;
+
+            background-image:
+                linear-gradient(
+                    rgba(2,48,71,0.9),
+                    rgba(2,48,71,0.9)
+                ),
+                url("https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: white;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            box-shadow: 0 -3px 8px rgba(0,0,0,0.3);
+        }
+
+
+        footer p {
+
+            margin: 5px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            .container {
+
+                display: block;
+            }
+
+
+            header {
+
+                height: 160px;
+            }
+
+
+            header h1 {
+
+                font-size: 24px;
+            }
+
+
+            nav {
+
+                gap: 20px;
+            }
+
+
+            .small-box {
+
+                height: 200px;
+            }
+
+
+            .main-content {
+
+                min-height: 400px;
+            }
+
+
+            .sidebar {
+
+                min-height: 350px;
+            }
+
+
+            footer {
+
+                height: 100px;
+            }
+
+
+            .game-area {
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .side-panel {
+
+                width: 85%;
+
+                right: -85%;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <h1>🏀 Basketball Game Portal</h1>
+
+        <nav>
+
+            <a href="#">Home</a>
+
+            <a href="#">Teams</a>
+
+            <a href="#">Play Game</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         PHOTO BOX 1
+    ========================== -->
+
+    <div class="small-box">
+
+        <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80"
+             alt="Basketball">
+
+        <div class="small-box-content">
+
+            <h2>🏀 Basketball</h2>
+
+            <p>
+                Experience the excitement
+                of basketball.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PHOTO BOX 2
+    ========================== -->
+
+    <div class="small-box">
+
+        <img src="https://images.unsplash.com/photo-1504457047772-27faf1c00561?auto=format&fit=crop&w=800&q=80"
+             alt="Basketball Challenge">
+
+        <div class="small-box-content">
+
+            <h2>🏆 Challenges</h2>
+
+            <p>
+                Complete shooting challenges
+                and score points.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         PHOTO BOX 3
+    ========================== -->
+
+    <div class="small-box">
+
+        <img src="https://images.unsplash.com/photo-1518065896235-a4c93e088e7a?auto=format&fit=crop&w=800&q=80"
+             alt="Basketball Player">
+
+        <div class="small-box-content">
+
+            <h2>⭐ High Score</h2>
+
+            <p>
+                Beat your previous score
+                and become champion.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+        <h2>🔥 Welcome to the Basketball Game</h2>
+
+        <p>
+            Test your basketball skills, score points
+            and compete against your friends.
+        </p>
+
+        <h3>🏀 Current Match</h3>
+
+
+        <div class="game-area">
+
+
+            <div class="team">
+
+                <h3>🔥 Warriors</h3>
+
+                <div class="score">
+                    78
+                </div>
+
+            </div>
+
+
+            <div class="vs">
+
+                VS
+
+            </div>
+
+
+            <div class="team">
+
+                <h3>⚡ Lakers</h3>
+
+                <div class="score">
+                    72
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <button class="play-button"
+                onclick="openPanel('game')">
+
+            ▶ Play Game
+
+        </button>
+
+    </main>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <h2>📂 Quick Links</h2>
+
+        <ul>
+
+            <li onclick="openPanel('game')">
+
+                <a href="javascript:void(0)">
+                    🏀 Start Game
+                </a>
+
+            </li>
+
+
+            <li onclick="openPanel('leaderboard')">
+
+                <a href="javascript:void(0)">
+                    🏆 Leaderboard
+                </a>
+
+            </li>
+
+
+            <li onclick="openPanel('teams')">
+
+                <a href="javascript:void(0)">
+                    👥 Teams
+                </a>
+
+            </li>
+
+
+            <li onclick="openPanel('scores')">
+
+                <a href="javascript:void(0)">
+                    📊 Match Scores
+                </a>
+
+            </li>
+
+
+            <li onclick="openPanel('settings')">
+
+                <a href="javascript:void(0)">
+                    ⚙ Game Settings
+                </a>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div>
+
+            <p>
+                © 2026 Basketball Game Portal
+            </p>
+
+            <p>
+                🏀 Play • Score • Win
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+<!-- =========================
+     SIDE OPENING PANEL
+========================== -->
+
+<div class="side-panel" id="sidePanel">
+
+    <span class="close-button"
+          onclick="closePanel()">
+
+        ×
+
+    </span>
+
+
+    <h2 id="panelTitle">
+        Basketball
+    </h2>
+
+
+    <p id="panelText">
+
+        Welcome to the Basketball Game Portal!
+
+    </p>
+
+
+    <button class="play-button"
+            onclick="alert('Game Started! 🏀')">
+
+        🏀 Start Now
+
+    </button>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script>
+
+    function openPanel(type) {
+
+        const panel =
+            document.getElementById("sidePanel");
+
+        const title =
+            document.getElementById("panelTitle");
+
+        const text =
+            document.getElementById("panelText");
+
+
+        if (type === "game") {
+
+            title.innerHTML =
+                "🏀 Start Basketball Game";
+
+            text.innerHTML =
+                "Get ready to play! Test your shooting skills, score points and become the basketball champion.";
+
+        }
+
+
+        else if (type === "leaderboard") {
+
+            title.innerHTML =
+                "🏆 Leaderboard";
+
+            text.innerHTML =
+                "🥇 Alex — 980 Points<br><br>" +
+                "🥈 John — 850 Points<br><br>" +
+                "🥉 Mike — 790 Points<br><br>" +
+                "⭐ You — 720 Points";
+
+        }
+
+
+        else if (type === "teams") {
+
+            title.innerHTML =
+                "👥 Teams";
+
+            text.innerHTML =
+                "🔥 Warriors<br><br>" +
+                "⚡ Lakers<br><br>" +
+                "🐂 Bulls<br><br>" +
+                "☘ Celtics";
+
+        }
+
+
+        else if (type === "scores") {
+
+            title.innerHTML =
+                "📊 Match Scores";
+
+            text.innerHTML =
+                "🔥 Warriors — 78<br><br>" +
+                "⚡ Lakers — 72<br><br>" +
+                "Final Score<br><br>" +
+                "🏆 Warriors Win!";
+
+        }
+
+
+        else if (type === "settings") {
+
+            title.innerHTML =
+                "⚙ Game Settings";
+
+            text.innerHTML =
+                "🎵 Sound: ON<br><br>" +
+                "🎮 Difficulty: Medium<br><br>" +
+                "🏀 Game Mode: Classic";
+
+        }
+
+
+        panel.classList.add("active");
+
+    }
+
+
+    function closePanel() {
+
+        const panel =
+            document.getElementById("sidePanel");
+
+        panel.classList.remove("active");
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
